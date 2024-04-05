@@ -1,0 +1,55 @@
+/* App.css */
+
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  background-color: #1187CF; /* 배경색 지정 */
+  color: #fff; /* 텍스트 색상 지정 */
+}
+.navbar-logo {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-logo img {
+  width: 40px;
+  margin-right: 10px;
+}
+
+.navbar-logo span {
+  color: white;
+  font-size: 1.2rem;
+}
+
+.navbar ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center; /* 아이템들을 수직 가운데 정렬합니다. */
+}
+
+.navbar li {
+  margin: 0 10px; /* 좌우 여백을 조정합니다. */
+}
+
+.navbar li a {
+  color: white;
+  text-decoration: none;
+}
+
+.navbar li.active a {
+  color: white;
+}
+
+section {
+  height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
