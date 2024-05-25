@@ -12,7 +12,6 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import axios from 'axios';
 
 const theme = createTheme();
 
@@ -24,8 +23,16 @@ export default function Login() {
     const password = formData.get('password');
 
     try {
-      const response = await axios.post('/login', { email, password });
-      console.log(response.data);
+      const response = await fetch('/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email, password }),
+      });
+
+      const data = await response.json();
+      console.log(data);
       // 서버로부터의 응답에 따라 다양한 동작을 수행할 수 있습니다.
     } catch (error) {
       console.error('Error:', error);

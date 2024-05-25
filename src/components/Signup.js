@@ -30,16 +30,35 @@ function Copyright(props) {
 const theme = createTheme();  // 테마 생성
 
 export default function SignUp() {
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    // 폼 데이터를 콘솔에 로깅
-    console.log({
+
+    const formData = {
       firstName: data.get('firstName'),
       lastName: data.get('lastName'),
       email: data.get('email'),
       password: data.get('password'),
-    });
+    };
+
+    // 폼 데이터를 콘솔에 로깅
+    console.log(formData);
+
+    try {
+      const response = await fetch('/signup', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const result = await response.json();
+      console.log(result);
+      // 서버로부터의 응답에 따라 다양한 동작을 수행할 수 있습니다.
+    } catch (error) {
+      console.error('Error:', error);
+    }
   };
 
   return (
