@@ -12,10 +12,14 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { useHistory } from 'react-router-dom';  // 리액트 라우터를 사용하는 경우
 
 const theme = createTheme();
 
 export default function Login() {
+
+  const history = useHistory();  // 리액트 라우터를 사용하는 경우
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
@@ -34,6 +38,16 @@ export default function Login() {
       const data = await response.json();
       console.log(data);
       // 서버로부터의 응답에 따라 다양한 동작을 수행할 수 있습니다.
+
+
+      if (response.ok) {
+        // 로그인 성공 시 리디렉션
+        history.push(data.redirect);  // 리액트 라우터를 사용하는 경우
+      } else {
+        // 로그인 실패 시 에러 메시지 출력
+        alert(data.message);
+      }
+
     } catch (error) {
       console.error('Error:', error);
     }
